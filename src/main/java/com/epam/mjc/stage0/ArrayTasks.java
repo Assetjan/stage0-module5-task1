@@ -58,7 +58,7 @@ public class ArrayTasks {
      * arr = [5, -3, -4],   number = 10    ->  -1
      */
     public int findIndexOfNumber(int[] arr, int number) {
-
+        return number;
     }
 
     /**
@@ -75,11 +75,19 @@ public class ArrayTasks {
         int in = arr.length-1;
         for (int i = 0; i < array.length; i++){
             array[i] = arr[in];
+
             in--;
         }
         return array;
     }
 
+    public static void main(String[] args) {
+        ArrayTasks arrayTasks = new ArrayTasks();
+        String newAr[] = arrayTasks.reverseArray(new String[]{"a","b","c","e",});
+        for (String w: newAr) {
+            System.out.println(w);
+        }
+    }
     /**
      * Return new int[] array obtained from arr int[] array
      * by choosing positive numbers only.
@@ -116,6 +124,8 @@ public class ArrayTasks {
             arr[0] = arr[1];
             arr[1] = arr[0];
         }
+
+        return null;
 
     }
 }
