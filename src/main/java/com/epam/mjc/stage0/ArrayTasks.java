@@ -58,7 +58,14 @@ public class ArrayTasks {
      * arr = [5, -3, -4],   number = 10    ->  -1
      */
     public int findIndexOfNumber(int[] arr, int number) {
-        return number;
+        int in = -1;
+        for (int i = 0; i < arr.length; i++){
+            if(arr[i] == number){
+                in = i;
+                break;
+            }
+        }
+        return in;
     }
 
     /**
@@ -102,7 +109,7 @@ public class ArrayTasks {
     public int[] getOnlyPositiveNumbers(int[] arr) {
         int count = 0;
         for (int i = 0; i < arr.length; i++){
-            if (arr[i] < 0){
+            if (arr[i] <= 0){
                 arr[i] = 0;
             }
         }
@@ -116,7 +123,7 @@ public class ArrayTasks {
         for (int i = 0; i < arr.length; i++){
             if (arr[i] > 0){
                 array[count2] = arr[i];
-                count++;
+                count2++;
             }
         }
         return array;
@@ -133,41 +140,28 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
-        int[][] array = new int[2][];
-        array[0] = arr[0];
-        array[1] = arr[1];
-        if (arr[0].length > arr[1].length){
-            arr[0] = arr[1];
-            arr[1] = array[0];
-        }
-        int min;
-        boolean sort = false;
-        while (!sort){
-            sort = true;
-            for (int i = 0; i < arr[0].length-1; i++ ){
-                if(arr[0][i]>arr[0][i+1]){
-                    min = arr[0][i];
-                    arr[0][i] = arr[0][i+1];
-                    arr[0][i+1] = min;
-                    sort = false;
+        for (int i=0; i<arr.length; i++) {
+            for (int j=0; j<arr[i].length; j++){
+                for (int k=j+1; k<arr[i].length; k++){
+                    int tmp;
+                    if (arr[i][j] > arr[i][k]){
+                        tmp = arr[i][j];
+                        arr[i][j] = arr[i][k];
+                        arr[i][k] = tmp;
+                    }
                 }
             }
         }
-        int min2;
-        boolean sort2 = false;
-        while (!sort2){
-            sort2 = true;
-            for (int i = 0; i < arr[1].length-1; i++ ){
-                if(arr[1][i]>arr[1][i+1]){
-                    min2 = arr[1][i];
-                    arr[1][i] = arr[1][i+1];
-                    arr[1][i+1] = min2;
-                    sort2 = false;
+        for (int i=0; i<arr.length; i++){
+            for (int j=1; j<arr.length-i; j++){
+                int[] tmp;
+                if (arr[j-1].length > arr[j].length){
+                    tmp = arr[j-1];
+                    arr[j-1] = arr[j];
+                    arr[j] = tmp;
                 }
             }
         }
-
         return arr;
-
     }
 }
