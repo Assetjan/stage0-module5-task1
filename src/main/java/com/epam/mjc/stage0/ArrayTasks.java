@@ -100,10 +100,23 @@ public class ArrayTasks {
      * arr = [1, 2]         -> [1, 2]
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
-        int[] array = new int[arr.length];
-        for (int i = 0; i < array.length; i++){
+        int count = 0;
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] < 0){
+                arr[i] = 0;
+            }
+        }
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] != 0){
+                count++;
+            }
+        }
+        int[] array = new int[count];
+        int count2 = 0;
+        for (int i = 0; i < arr.length; i++){
             if (arr[i] > 0){
-                array[i] = arr[i];
+                array[count2] = arr[i];
+                count++;
             }
         }
         return array;
@@ -120,12 +133,41 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
+        int[][] array = new int[2][];
+        array[0] = arr[0];
+        array[1] = arr[1];
         if (arr[0].length > arr[1].length){
             arr[0] = arr[1];
-            arr[1] = arr[0];
+            arr[1] = array[0];
+        }
+        int min;
+        boolean sort = false;
+        while (!sort){
+            sort = true;
+            for (int i = 0; i < arr[0].length-1; i++ ){
+                if(arr[0][i]>arr[0][i+1]){
+                    min = arr[0][i];
+                    arr[0][i] = arr[0][i+1];
+                    arr[0][i+1] = min;
+                    sort = false;
+                }
+            }
+        }
+        int min2;
+        boolean sort2 = false;
+        while (!sort2){
+            sort2 = true;
+            for (int i = 0; i < arr[1].length-1; i++ ){
+                if(arr[1][i]>arr[1][i+1]){
+                    min2 = arr[1][i];
+                    arr[1][i] = arr[1][i+1];
+                    arr[1][i+1] = min2;
+                    sort2 = false;
+                }
+            }
         }
 
-        return null;
+        return arr;
 
     }
 }
